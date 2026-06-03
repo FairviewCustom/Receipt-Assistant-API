@@ -13,7 +13,6 @@ TM_FORM = "tm_form.pdf"
 @app.post("/merge")
 async def merge_receipt(receipt: UploadFile = File(...)):
 
-```
 with tempfile.TemporaryDirectory() as tmp:
 
     receipt_path = os.path.join(tmp, receipt.filename)
@@ -60,4 +59,3 @@ with tempfile.TemporaryDirectory() as tmp:
             "Content-Disposition": "attachment; filename=merged_receipt.pdf"
         }
     )
-```
