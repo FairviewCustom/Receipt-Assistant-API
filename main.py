@@ -21,10 +21,9 @@ with tempfile.TemporaryDirectory() as tmp:
     with open(receipt_path, "wb") as f:
         f.write(await receipt.read())
 
-    # Convert image to PDF if needed
     ext = receipt.filename.lower().split(".")[-1]
 
-    if ext in ["jpg", "jpeg", "png", "heic"]:
+    if ext in ["jpg", "jpeg", "png"]:
 
         image = Image.open(receipt_path)
 
@@ -58,8 +57,7 @@ with tempfile.TemporaryDirectory() as tmp:
         output,
         media_type="application/pdf",
         headers={
-            "Content-Disposition":
-            "attachment; filename=merged_receipt.pdf"
+            "Content-Disposition": "attachment; filename=merged_receipt.pdf"
         }
     )
 ```
